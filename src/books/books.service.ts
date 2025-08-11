@@ -1,4 +1,4 @@
-import { Get, Injectable, Param, ParseUUIDPipe } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from './entity/book.entity';
 import { Repository } from 'typeorm';
@@ -20,8 +20,7 @@ export class BooksService {
     return await this.bookRepository.save(book);
   }
 
-  @Get(':id')
-  async getById(@Param('id', ParseUUIDPipe) id: string): Promise<Book | null> {
+  async getById(id: string): Promise<Book | null> {
     return await this.bookRepository.findOne({ where: { id } });
   }
 
